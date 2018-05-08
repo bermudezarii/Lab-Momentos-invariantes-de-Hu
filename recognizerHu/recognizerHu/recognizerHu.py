@@ -95,7 +95,7 @@ def invariant_moments_to_rotation(image, original_hu_moments):
     rotation_90 = rotation_image(image, 90)
     rotation_180 = rotation_image(image, 180)
     rotation_270 = rotation_image(image, 270)
-    rotation_360 = rotation_image(image, 360)
+    rotation_360 = rotation_image(image, 330)
 
     #cv2.imshow("90", rotation_90)
     #cv2.imshow("180", rotation_180)
@@ -124,25 +124,59 @@ def invariant_moments_to_rotation(image, original_hu_moments):
         return False
     
 
-
-#def invariant_moments_to_scaling(image, original_hu_moments): 
+def invariant_moments_to_scaling(image, original_hu_moments): 
+    scaling_2 = scaling_image(image,2)
+    scaling_4 = scaling_image(image,4)
+    scaling_8 = scaling_image(image,8)
+    scaling_16 = scaling_image(image,16)
+    
+    hu_moments_2 = hu_moments(scaling_2)
+    hu_moments_4 = hu_moments(scaling_4)
+    hu_moments_8 = hu_moments(scaling_8)
+    hu_moments_16 = hu_moments(scaling_16)
+    
+    
+    print(hu_moments_2)
+    print(hu_moments_4)
+    print(hu_moments_8)
+    print(hu_moments_16)
+    
+    
+def invariant_moments_to_translation(image, original_hu_moments): 
+    translation_2 = translation_image(image,2,10)
+    translation_4 = translation_image(image,4,10)
+    translation_8 = translation_image(image,8,10)
+    translation_16 = translation_image(image,16,10)
+    
+    hu_moments_2 = hu_moments(translation_2)
+    hu_moments_4 = hu_moments(translation_4)
+    hu_moments_8 = hu_moments(translation_8)
+    hu_moments_16 = hu_moments(translation_16)
+    
+    
+    print(hu_moments_2)
+    print(hu_moments_4)
+    print(hu_moments_8)
+    print(hu_moments_16)
     
 
 #negative_samples("Samples","Negative-Samples", 150)
 #print(hu_moments(cv2.imread("Negative-Samples/vowel_101_2.jpg", 0)))
 #cv2.imshow("..",(rotate_image(cv2.imread("Negative-Samples/vowel_101_2.jpg", 0),90)))
-#cv2.imshow("..",(translation_image(cv2.imread("Negative-Samples/vowel_101_2.jpg", 0),15,15)))
+cv2.imshow("..",(translation_image(cv2.imread("Negative-Samples/vowel_101_2.jpg", 0),15,15)))
 
 cv2.imshow("..",(scaling_image(cv2.imread("Negative-Samples/vowel_101_2.jpg", 0),4)))
 cv2.waitKey()
 #vowels 
 
 vowel_a = cv2.imread("Negative-Samples/vowel_134_3.jpg", 0)
-#vowel_e = cv2.imread("Negative-Samples/vowel_101_2.jpg", 0)
+vowel_e = cv2.imread("Negative-Samples/vowel_101_2.jpg", 0)
 #vowel_i = cv2.imread("Negative-Samples/vowel_85_3.jpg", 0)
 #vowel_o = cv2.imread("Negative-Samples/vowel_53_1.jpg", 0)
 #vowel_u = cv2.imread("Negative-Samples/vowel_1_3.jpg", 0)
 
 original_hu_moments = hu_moments(vowel_a)
-print(invariant_moments_to_rotation(vowel_a, original_hu_moments))
+##print(invariant_moments_to_rotation(vowel_a, original_hu_moments))
+original_hu_moments = hu_moments(vowel_e)
+print(invariant_moments_to_translation(vowel_e, original_hu_moments))
 

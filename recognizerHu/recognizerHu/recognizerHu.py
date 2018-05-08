@@ -87,7 +87,7 @@ def all_hu_moments(vowel_a, vowel_e, vowel_i, vowel_o, vowel_u):
 ##                                                                   ##
 ##  Return  true if it finds that all invariant moments are equal    ##
 ##   with  the invariant moment initially received.                  ##
-##																	 ##
+##																	                ##
 #######################################################################
     
 def invariant_moments_to_rotation(image, original_hu_moments):
@@ -123,7 +123,15 @@ def invariant_moments_to_rotation(image, original_hu_moments):
     else:
         return False
     
-
+#######################################################################
+##                                                                   ##
+##  Check if the moments are invariant for the same image but with   ##
+##  a certain degree of scaling                                      ##
+##                                                                   ##
+##  Return  true if it finds that all invariant moments are equal    ##
+##   with  the invariant moment initially received.                  ##
+##																	                ##
+#######################################################################   
 def invariant_moments_to_scaling(image, original_hu_moments): 
     scaling_2 = scaling_image(image,2)
     scaling_4 = scaling_image(image,4)
@@ -141,7 +149,15 @@ def invariant_moments_to_scaling(image, original_hu_moments):
     print(hu_moments_8)
     print(hu_moments_16)
     
-    
+#######################################################################
+##                                                                   ##
+##  Check if the moments are invariant for the same image but with   ##
+##  a certain degree of translation                                  ##
+##                                                                   ##
+##  Return  true if it finds that all invariant moments are equal    ##
+##   with  the invariant moment initially received.                  ##
+##																	                ##
+#######################################################################       
 def invariant_moments_to_translation(image, original_hu_moments): 
     translation_2 = translation_image(image,2,10)
     translation_4 = translation_image(image,4,10)
@@ -152,8 +168,7 @@ def invariant_moments_to_translation(image, original_hu_moments):
     hu_moments_4 = hu_moments(translation_4)
     hu_moments_8 = hu_moments(translation_8)
     hu_moments_16 = hu_moments(translation_16)
-    
-    
+
     print(hu_moments_2)
     print(hu_moments_4)
     print(hu_moments_8)

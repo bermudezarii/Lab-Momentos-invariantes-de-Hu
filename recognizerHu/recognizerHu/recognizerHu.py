@@ -95,7 +95,7 @@ def invariant_moments_to_rotation(image, original_hu_moments):
     rotation_90 = rotation_image(image, 90)
     rotation_180 = rotation_image(image, 180)
     rotation_270 = rotation_image(image, 270)
-    rotation_330 = rotation_image(image, 330)
+    rotation_360 = rotation_image(image, 360)
 
     #cv2.imshow("90", rotation_90)
     #cv2.imshow("180", rotation_180)
@@ -107,29 +107,34 @@ def invariant_moments_to_rotation(image, original_hu_moments):
     hu_moments_90 = hu_moments(rotation_90)
     hu_moments_180 = hu_moments(rotation_180)
     hu_moments_270 = hu_moments(rotation_270)
-    hu_moments_330 = hu_moments(rotation_330)
+    hu_moments_360 = hu_moments(rotation_360)
 
-    #print(hu_moments_90)
-    #print(hu_moments_180)
-    #print(hu_moments_270)
-    #print(hu_moments_330)
-
+    print(hu_moments_90)
+    print(hu_moments_180)
+    print(hu_moments_270)
+    print(hu_moments_360)
+    
+    print(np.allclose(original_hu_moments, hu_moments_90))
     #Verified if all arrays are equals
     
-    if(np.array_equal(original_hu_moments, hu_moments_90) and np.array_equal(original_hu_moments, hu_moments_180) and
-       np.array_equal(original_hu_moments, hu_moments_270) and np.array_equal(original_hu_moments, hu_moments_330)):
+    if(np.allclose(original_hu_moments, hu_moments_90) and np.allclose(original_hu_moments, hu_moments_180) and
+       np.allclose(original_hu_moments, hu_moments_270) and np.allclose(original_hu_moments, hu_moments_360)):
         return True
     else:
         return False
     
 
 
+#def invariant_moments_to_scaling(image, original_hu_moments): 
+    
+
 #negative_samples("Samples","Negative-Samples", 150)
 #print(hu_moments(cv2.imread("Negative-Samples/vowel_101_2.jpg", 0)))
 #cv2.imshow("..",(rotate_image(cv2.imread("Negative-Samples/vowel_101_2.jpg", 0),90)))
 #cv2.imshow("..",(translation_image(cv2.imread("Negative-Samples/vowel_101_2.jpg", 0),15,15)))
-#cv2.imshow("..",(scaling_image(cv2.imread("Negative-Samples/vowel_101_2.jpg", 0),4)))
 
+cv2.imshow("..",(scaling_image(cv2.imread("Negative-Samples/vowel_101_2.jpg", 0),4)))
+cv2.waitKey()
 #vowels 
 
 vowel_a = cv2.imread("Negative-Samples/vowel_134_3.jpg", 0)

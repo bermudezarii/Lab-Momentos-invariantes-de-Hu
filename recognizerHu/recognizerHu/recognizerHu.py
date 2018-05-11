@@ -106,6 +106,13 @@ def invariant_moments_to_rotation(image, original_hu_moments):
     hu_moments_180 = hu_moments(rotation_180)
     hu_moments_270 = hu_moments(rotation_270)
 
+    strings = ["" for i in range(7)]
+    for i in range(7): 
+        strings[i] += str(i+1) + "   &   "X
+        strings[i] += str(hu_moments_90[i]) + "   &   "
+        strings[i] += str(hu_moments_180[i]) + "   &   "
+        strings[i] += str(hu_moments_270[i])+ "   \\\\  "
+        print(strings[i])
 
     print(hu_moments_90)
     print(hu_moments_180)
@@ -139,8 +146,21 @@ def invariant_moments_to_scaling(image, original_hu_moments):
     hu_moments_4 = hu_moments(scaling_4)
     hu_moments_8 = hu_moments(scaling_8)
     hu_moments_16 = hu_moments(scaling_16)
+ 
+    strings = ["" for i in range(7)]
+    for i in range(7): 
+        strings[i] += str(i+1) + "   &   "
+        strings[i] += str(hu_moments_2[i]) + "   &   "
+        strings[i] += str(hu_moments_4[i])+ "   \\\\  "
+        print(strings[i])
     
-    
+    strings = ["" for i in range(7)]
+    for i in range(7): 
+        strings[i] += str(i+1) + "   &   "
+        strings[i] += str(hu_moments_8[i]) + "   &   "
+        strings[i] += str(hu_moments_16[i])+ "   \\\\  "
+        print(strings[i])
+
     print(hu_moments_2)
     print(hu_moments_4)
     print(hu_moments_8)
@@ -174,7 +194,21 @@ def invariant_moments_to_translation(image, original_hu_moments):
     hu_moments_4 = hu_moments(translation_4)
     hu_moments_8 = hu_moments(translation_8)
     hu_moments_16 = hu_moments(translation_16)
-
+    
+    strings = ["" for i in range(7)]
+    for i in range(7): 
+        strings[i] += str(i+1) + "   &   "
+        strings[i] += str(hu_moments_2[i]) + "   &   "
+        strings[i] += str(hu_moments_4[i])+ "   \\\\  "
+        print(strings[i])
+    
+    strings = ["" for i in range(7)]
+    for i in range(7): 
+        strings[i] += str(i+1) + "   &   "
+        strings[i] += str(hu_moments_8[i]) + "   &   "
+        strings[i] += str(hu_moments_16[i])+ "   \\\\  "
+        print(strings[i])
+    
     print(hu_moments_2)
     print(hu_moments_4)
     print(hu_moments_8)
@@ -195,6 +229,11 @@ COMMENTS ABOUT LAB 3:
     The fact they are not identical is to be expected, in openCV for some images, 
     the original and transformed images are a bit diferent.
 """
+print("Welcome to Hu Moment Calculator")
+print("Here for each vowel there is it will be calculated the 7 original moments of hu, from the original image.")
+print("Then you'll see the 7 moments in an array")
+
+original_moments_vowels = []
 
 
 ##we took one example of each vocal to process the different transformations 
@@ -203,6 +242,7 @@ print("VOWEL A")
 vowel_a = cv2.imread("Negative-Samples/vowel_134_3.jpg", 0)
 print("Original hu moments")
 original_hu_moments = hu_moments(vowel_a)
+original_moments_vowels.append(original_hu_moments)
 print(original_hu_moments)
 #calculating each example of hu momments 
 print("Hu moments in: ROTATION")
@@ -217,6 +257,8 @@ print("VOWEL E")
 vowel_e = cv2.imread("Negative-Samples/vowel_101_2.jpg", 0)
 print("Original hu moments")
 original_hu_moments = hu_moments(vowel_e)
+original_moments_vowels.append(original_hu_moments)
+print(original_hu_moments)
 #calculating each example of hu momments 
 print("Hu moments in: ROTATION")
 print(invariant_moments_to_rotation(vowel_e, original_hu_moments))
@@ -231,6 +273,8 @@ print("VOWEL I")
 vowel_i = cv2.imread("Negative-Samples/vowel_85_3.jpg", 0)
 print("Original hu moments")
 original_hu_moments = hu_moments(vowel_i)
+original_moments_vowels.append(original_hu_moments)
+print(original_hu_moments)
 #calculating each example of hu momments 
 print("Hu moments in: ROTATION")
 print(invariant_moments_to_rotation(vowel_i, original_hu_moments))
@@ -246,6 +290,8 @@ print("VOWEL O")
 vowel_o = cv2.imread("Negative-Samples/vowel_53_1.jpg", 0)
 print("Original hu moments")
 original_hu_moments = hu_moments(vowel_o)
+original_moments_vowels.append(original_hu_moments)
+print(original_hu_moments)
 #calculating each example of hu momments 
 print("Hu moments in: ROTATION")
 print(invariant_moments_to_rotation(vowel_o, original_hu_moments))
@@ -261,6 +307,8 @@ print("VOWEL U")
 vowel_u = cv2.imread("Negative-Samples/vowel_1_3.jpg", 0)
 print("Original hu moments")
 original_hu_moments = hu_moments(vowel_u)
+original_moments_vowels.append(original_hu_moments)
+print(original_hu_moments)
 #calculating each example of hu momments 
 print("Hu moments in: ROTATION")
 print(invariant_moments_to_rotation(vowel_u, original_hu_moments))
@@ -269,25 +317,4 @@ invariant_moments_to_translation(vowel_u, original_hu_moments)
 print("Hu moments in: SCALING")
 invariant_moments_to_scaling(vowel_u, original_hu_moments)
 
-vowel_u = cv2.imread("Negative-Samples/vowel_1_2.jpg", 0)
-print("Original hu moments")
-original_hu_moments = hu_moments(vowel_u)
-#calculating each example of hu momments 
-print("Hu moments in: ROTATION")
-print(invariant_moments_to_rotation(vowel_u, original_hu_moments))
-print("Hu moments in: TRANSLATION")
-invariant_moments_to_translation(vowel_u, original_hu_moments)
-print("Hu moments in: SCALING")
-invariant_moments_to_scaling(vowel_u, original_hu_moments)
-
-vowel_u = cv2.imread("Negative-Samples/vowel_1_1.jpg", 0)
-print("Original hu moments")
-original_hu_moments = hu_moments(vowel_u)
-#calculating each example of hu momments 
-print("Hu moments in: ROTATION")
-print(invariant_moments_to_rotation(vowel_u, original_hu_moments))
-print("Hu moments in: TRANSLATION")
-invariant_moments_to_translation(vowel_u, original_hu_moments)
-print("Hu moments in: SCALING")
-invariant_moments_to_scaling(vowel_u, original_hu_moments)
-
+    
